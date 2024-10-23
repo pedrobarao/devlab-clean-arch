@@ -1,7 +1,6 @@
-# clean-arch-dotnet
-dotnet ef database update -p .\src\Lab.Customers.Api\Lab.Customers.Api.csproj
-dotnet ef migrations script -p .\src\Lab.Customers.Infra\ -s .\src\Lab.Customers.Api\Lab.Customers.Api.csproj -c CustomerDbContext -o .\deploy\init.sql
+# DevLab - Clean Architecture 🚀
 
-# Docker
-docker-compose -f ./deploy/docker-compose.yaml up -d
-docker-compose -f ./deploy/docker-compose.yaml build
+![./docs/images/clean-arch.png](./docs/images/clean-arch.png)
+
+Este projeto é parte de meus estudos sobre Clean Architecture. O objetivo é implementar uma aplicação simples, porém completa, utilizando os conceitos da arquitetura limpa.
+Este é um repositório vivo e será atualizado conforme eu enxergar novas melhorias e/ou correções. Fique a vontade para contribuir com sugestões, será um prazer aprender com você!
