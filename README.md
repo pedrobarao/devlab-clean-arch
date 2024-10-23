@@ -6,3 +6,5 @@ Este projeto é parte de meus estudos sobre **Clean Architecture**. O objetivo �
 Este é um repositório vivo e será atualizado conforme eu enxergar novas melhorias e/ou correções. Fique a vontade para contribuir com sugestões, será um prazer aprender com você! 🫡
 
 ⚠️ **Aviso**: Este projeto está em desenvolvimento e é apenas um estudo e não deve ser utilizado em produção.
+
+Em breve irei adicionar mais detalhes e explicar melhor o que é a Clean Architecture e como ela pode ser aplicada em projetos reais.
