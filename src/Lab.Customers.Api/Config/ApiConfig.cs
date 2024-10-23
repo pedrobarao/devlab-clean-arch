@@ -1,4 +1,6 @@
-﻿using Lab.Customers.Api.Extensions;
+﻿using Dapper;
+using Lab.Customers.Api.Extensions;
+using Lab.Customers.Infra.Extensions;
 using Lab.WebApi.Core.ApplicationIdentity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
@@ -33,7 +35,10 @@ public static class ApiConfig
                     .AllowAnyHeader());
         });
 
-        services.AddHealthCheckConfig();
+        services.AddHealthCheckConfig(configuration);
+        
+        // Dapper Extensions
+        SqlMapper.AddTypeHandler(new DapperDateOnlyTypeExtension());
 
         return services;
     }

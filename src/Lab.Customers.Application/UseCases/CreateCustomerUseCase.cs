@@ -20,7 +20,11 @@ public class CreateCustomerUseCase(ICustomerRepository customerRepository)
         var customer = new Customer(name, cpf, newCustomerDto.BirthDate);
         var validationResult = customer.Validate();
 
-        if (!validationResult.IsValid) Result.AddErrors(validationResult);
+        if (!validationResult.IsValid)
+        {
+            Result.AddErrors(validationResult);
+            return Result;
+        }
 
         customerRepository.Add(customer);
         await customerRepository.UnitOfWork.Commit();
@@ -31,9 +35,4 @@ public class CreateCustomerUseCase(ICustomerRepository customerRepository)
     }
 
     public Result<CustomerCreatedDto> Result { get; } = new();
-
-    public bool ValidateInput(NewCustomerDto request)
-    {
-        throw new NotImplementedException();
-    }
 }

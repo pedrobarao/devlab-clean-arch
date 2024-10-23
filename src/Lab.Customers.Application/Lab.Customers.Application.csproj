@@ -9,6 +9,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\Lab.Customers.Domain\Lab.Customers.Domain.csproj"/>
+        <ProjectReference Include="..\Lab.WebApi.Core\Lab.WebApi.Core.csproj" />
     </ItemGroup>
 
     <ItemGroup>

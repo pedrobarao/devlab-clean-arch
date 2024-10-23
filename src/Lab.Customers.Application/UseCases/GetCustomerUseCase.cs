@@ -18,7 +18,7 @@ public class GetCustomerUseCase(ICustomerRepository customerRepository)
         Result.SetData(new CustomerDto
         {
             Id = customers.Id,
-            Name = customers.Name.ToString(),
+            FirstName = customers.Name.ToString(),
             Cpf = customers.Cpf.ToString(),
             BirthDate = customers.BirthDate
         });
@@ -27,9 +27,4 @@ public class GetCustomerUseCase(ICustomerRepository customerRepository)
     }
 
     public Result<CustomerDto?> Result { get; } = new();
-
-    public bool ValidateInput(Guid request)
-    {
-        throw new NotImplementedException();
-    }
 }

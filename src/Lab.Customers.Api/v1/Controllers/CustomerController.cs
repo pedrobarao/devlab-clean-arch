@@ -26,21 +26,29 @@ public class CustomerController : MainController
     [HttpGet("{id}")]
     public async Task<IActionResult> Get([FromServices] IGetCustomerUseCase getCustomerUseCase, Guid id)
     {
-        var customer = await getCustomerUseCase.Handle(id);
-        return customer.Data is null ? NotFound() : Ok(customer);
+        var result = await getCustomerUseCase.Handle(id);
+        return result.Data is null ? NotFound() : Ok(result.Data);
     }
 
     [HttpGet]
     public async Task<IActionResult> List([FromServices] IListCustomerUseCase listCustomerUseCase,
-        [FromQuery] QueryCustomerDto query)
+        int pageSize = 10,
+        int pageIndex = 0,
+        string? query = null)
     {
-        var result = await listCustomerUseCase.Handle(query);
+        var result = await listCustomerUseCase.Handle(new QueryCustomerDto
+        {
+            PageSize = pageSize,
+            PageIndex = pageIndex,
+            Filter = query
+        });
+        
         return Ok(result.Data);
     }
 
     [HttpPut("{id}")]
     public async Task<IActionResult> Update([FromServices] IUpdateCustomerUseCase updateCustomerUseCase,
-        UpdateCustomerDto updateCustomer, Guid id)
+        UpdateCustomerDto updateCustomer, [FromRoute] Guid id)
     {
         if (id != updateCustomer.Id) return BadRequest("The consumer id is not valid.");
 

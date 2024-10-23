@@ -13,7 +13,6 @@ public record Cpf
 
     public Cpf(string number)
     {
-        if (!Validate(number)) throw new DomainException("invalid CPF");
         Number = number.JustNumbers(number);
     }
 
@@ -75,5 +74,10 @@ public record Cpf
         }
 
         return true;
+    }
+
+    public override string ToString()
+    {
+        return Number;
     }
 }

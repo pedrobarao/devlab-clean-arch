@@ -10,8 +10,6 @@ namespace Lab.Customers.Application.UseCases;
 public class ListCustomerUseCase(ICustomerRepository customerRepository)
     : IListCustomerUseCase, IUseCase<QueryCustomerDto, Result<PagedResult<CustomerDto>>>
 {
-    public Result<PagedResult<CustomerDto>> Result { get; } = new();
-    
     public async Task<Result<PagedResult<CustomerDto>>> Handle(QueryCustomerDto query)
     {
         var pagedCustomers = await customerRepository.ListPagedAsync(query.PageSize, query.PageIndex, query.Filter);
@@ -19,11 +17,14 @@ public class ListCustomerUseCase(ICustomerRepository customerRepository)
         Result.SetData(PagedResultHandler.MapItems(pagedCustomers, p => new CustomerDto
         {
             Id = p.Id,
-            Name = p.Name.FirstName,
+            FirstName = p.Name.FirstName,
+            LastName = p.Name.LastName,
             BirthDate = p.BirthDate,
-            Cpf = p.Cpf.Number
+            Cpf = p.Cpf.ToString()
         }));
 
         return Result;
     }
+
+    public Result<PagedResult<CustomerDto>> Result { get; } = new();
 }

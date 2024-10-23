@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Lab.WebApi.Core.ModelStateValidations;
 
 namespace Lab.Customers.Application.DTOs.Inputs;
 
@@ -7,8 +8,16 @@ public class UpdateCustomerDto
     [Required(ErrorMessage = "The field {0} is required")]
     public Guid Id { get; set; }
 
-    public string? FirstName { get; set; }
-    public string? LastName { get; set; }
-    public string? Cpf { get; set; }
-    public DateTime? BirthDate { get; set; }
+    [Required(ErrorMessage = "The field {0} is required")]
+    public required string FirstName { get; set; }
+    
+    [Required(ErrorMessage = "The field {0} is required")]
+    public required string LastName { get; set; }
+    
+    [Required(ErrorMessage = "The field {0} is required")]
+    [CpfValidation]
+    public required string Cpf { get; set; }
+    
+    [Required(ErrorMessage = "The field {0} is required")]
+    public DateOnly BirthDate { get; set; }
 }

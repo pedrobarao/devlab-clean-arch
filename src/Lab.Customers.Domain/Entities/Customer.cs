@@ -18,6 +18,14 @@ public class Customer : Entity, IAggregateRoot
         Cpf = cpf;
         BirthDate = birthDate;
     }
+    
+    public Customer(Guid id, Name name, Cpf cpf, DateOnly birthDate)
+    {
+        Id = id;
+        Name = name;
+        Cpf = cpf;
+        BirthDate = birthDate;
+    }
 
     public Name Name { get; private set; } = null!;
     public Cpf Cpf { get; private set; } = null!;
@@ -30,6 +38,16 @@ public class Customer : Entity, IAggregateRoot
 
     public void UpdateName(Name name)
     {
-        throw new NotImplementedException();
+        Name = name;
+    }
+
+    public void UpdateCpf(Cpf cpf)
+    {
+        Cpf = cpf;
+    }
+
+    public void UpdateBirthDate(DateOnly date)
+    {
+        BirthDate = date;
     }
 }

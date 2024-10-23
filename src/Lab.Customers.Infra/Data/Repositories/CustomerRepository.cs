@@ -36,7 +36,7 @@ public sealed class CustomerRepository : ICustomerRepository
                                     ""BirthDate"",
                                     ""FirstName"",
                                     ""LastName"",
-                                    ""Cpf""
+                                    ""Cpf"" AS ""Number""
                        FROM ""Customers"" 
                       WHERE (@query IS NULL OR UPPER(""FirstName"") LIKE '%' || @query || '%')
                          OR (@query IS NULL OR UPPER(""LastName"") LIKE '%' || @query || '%')
@@ -49,10 +49,12 @@ public sealed class CustomerRepository : ICustomerRepository
                                    OR (@query IS NULL OR UPPER(""LastName"") LIKE '%' || @query || '%')";
 
         var queryParams = new { pageSize, pageIndex, query = query?.ToUpper() };
+
         var customers = await _context.Database.GetDbConnection()
             .QueryAsync<Customer, Name, Cpf, Customer>(sql,
-                (customer, name, cpf) => new Customer(name, cpf, customer.BirthDate), queryParams,
-                splitOn: "Id,FirstName,Cpf");
+                (customer, name, cpf) => new Customer(customer.Id, name, cpf, customer.BirthDate), queryParams,
+                splitOn: "Id,FirstName,Number");
+
         var totalItems = await _context.Database.GetDbConnection()
             .QueryFirstOrDefaultAsync<int>(count, queryParams);
 

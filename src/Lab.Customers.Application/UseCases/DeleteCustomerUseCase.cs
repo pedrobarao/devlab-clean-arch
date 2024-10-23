@@ -25,9 +25,4 @@ public class DeleteCustomerUseCase(ICustomerRepository customerRepository)
     }
 
     public Result Result { get; } = new();
-
-    public bool ValidateInput(Guid request)
-    {
-        throw new NotImplementedException();
-    }
 }
