@@ -1,0 +1,86 @@
+version: '3'
+services:
+  devlab-api:
+    build:
+      context: ../
+      dockerfile: ./src/Lab.Customers.Api/Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4317
+  otel-collector:
+    build:
+      context: ../
+      dockerfile: ./deploy/otel/Dockerfile
+    ports:
+      - "4317:4317"
+      - "4318:4318"
+    networks:
+      - devlab-network
+  
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.2
+    container_name: devlab-elasticsearch
+    environment:
+      - discovery.type=single-node
+      - ELASTIC_PASSWORD=Dev@123
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    networks:
+      - devlab-network
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.17.2
+    container_name: devlab-kibana
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+      - ELASTICSEARCH_USERNAME=elastic
+      - ELASTICSEARCH_PASSWORD=Dev@123
+    ports:
+      - "5601:5601"
+    networks:
+      - devlab-network
+    depends_on:
+      - elasticsearch
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:7.17.2
+    container_name: devlab-logstash
+    command: logstash -f /usr/share/logstash/pipeline/logstash.conf
+    ports:
+      - "5044:5044"
+    depends_on:
+      - elasticsearch
+    networks:
+      - devlab-network
+    volumes:
+      - ./logstash_data/pipeline:/usr/share/logstash/pipeline:ro
+      - ./logstash_data/config:/usr/share/logstash/config:ro
+
+  apm-server:
+    image: docker.elastic.co/apm/apm-server:7.17.2
+    container_name: devlab-apm
+    environment:
+      - ELASTICSEARCH_HOST=http://elasticsearch:9200
+      - ELASTICSEARCH_USERNAME=elastic
+      - ELASTICSEARCH_PASSWORD=Dev@123
+      - KIBANA_HOST=http://kibana:5601
+      - APM_SERVER_SECRET_TOKEN=your_secret_token_here
+    ports:
+      - "8200:8200"
+    depends_on:
+      - elasticsearch
+      - kibana
+
+networks:
+  devlab-network:
+    driver: bridge
+
+volumes:
+  elasticsearch_data:
+    driver: local
+  logstash_data:
+    driver: local

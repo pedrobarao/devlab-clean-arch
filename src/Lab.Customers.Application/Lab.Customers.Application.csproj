@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>Lab.Customers.Application</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Lab.Customers.Domain\Lab.Customers.Domain.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Remove="Mappings\**"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Remove="Mappings\**"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Remove="Mappings\**"/>
+    </ItemGroup>
+
+</Project>
