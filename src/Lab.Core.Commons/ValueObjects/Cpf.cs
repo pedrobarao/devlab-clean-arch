@@ -17,7 +17,7 @@ public record Cpf
         Number = number.JustNumbers(number);
     }
 
-    public string Number { get; private set; }
+    public string Number { get; private set; } = null!;
 
     public static bool Validate(string cpf)
     {

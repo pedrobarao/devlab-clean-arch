@@ -12,7 +12,6 @@ COPY ["src/Lab.Customers.Api/Lab.Customers.Api.csproj", "src/Lab.Customers.Api/"
 COPY ["src/Lab.Customers.Application/Lab.Customers.Application.csproj", "src/Lab.Customers.Application/"]
 COPY ["src/Lab.Customers.Domain/Lab.Customers.Domain.csproj", "src/Lab.Customers.Domain/"]
 COPY ["src/Lab.Core.Commons/Lab.Core.Commons.csproj", "src/Lab.Core.Commons/"]
-COPY ["src/Lab.Telemetry/Lab.Telemetry.csproj", "src/Lab.Telemetry/"]
 COPY ["src/Lab.Customers.Infra/Lab.Customers.Infra.csproj", "src/Lab.Customers.Infra/"]
 COPY ["src/Lab.WebApi.Core/Lab.WebApi.Core.csproj", "src/Lab.WebApi.Core/"]
 RUN dotnet restore "./src/Lab.Customers.Api/Lab.Customers.Api.csproj"

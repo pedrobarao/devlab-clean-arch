@@ -19,8 +19,8 @@ public class Customer : Entity, IAggregateRoot
         BirthDate = birthDate;
     }
 
-    public Name Name { get; private set; }
-    public Cpf Cpf { get; private set; }
+    public Name Name { get; private set; } = null!;
+    public Cpf Cpf { get; private set; } = null!;
     public DateOnly BirthDate { get; private set; }
 
     public ValidationResult Validate()

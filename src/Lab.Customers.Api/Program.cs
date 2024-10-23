@@ -11,7 +11,3 @@ var app = builder.Build();
 app.UseApiConfig();
 
 app.Run();
-
-public abstract partial class Program
-{
-}

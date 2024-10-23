@@ -34,7 +34,7 @@ public abstract class SpecificationValidator<T> where T : class
         _validationRules.Remove(name);
     }
 
-    protected Rule<T> GetRule(string name)
+    protected Rule<T>? GetRule(string name)
     {
         _validationRules.TryGetValue(name, out var rule);
         return rule;

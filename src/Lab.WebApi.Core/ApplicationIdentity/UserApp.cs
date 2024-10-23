@@ -12,7 +12,7 @@ public class UserApp : IUserApp
         _accessor = accessor;
     }
 
-    public string Name => _accessor.HttpContext.User.Identity.Name;
+    public string Name => _accessor.HttpContext.User.Identity!.Name!;
 
     public Guid? GetUserId()
     {
@@ -32,19 +32,19 @@ public class UserApp : IUserApp
         return _accessor.HttpContext.User.GetUserEmail() ?? "";
     }
 
-    public string GetUserToken()
+    public string? GetUserToken()
     {
         return IsAuthenticated() ? _accessor.HttpContext.User.GetUserToken() : "";
     }
 
-    public string GetUserRefreshToken()
+    public string? GetUserRefreshToken()
     {
         return IsAuthenticated() ? _accessor.HttpContext.User.GetUserRefreshToken() : "";
     }
 
     public bool IsAuthenticated()
     {
-        return _accessor.HttpContext.User.Identity.IsAuthenticated;
+        return _accessor.HttpContext.User.Identity!.IsAuthenticated;
     }
 
     public bool IsInRole(string role)

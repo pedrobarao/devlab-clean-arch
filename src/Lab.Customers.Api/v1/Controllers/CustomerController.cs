@@ -20,7 +20,7 @@ public class CustomerController : MainController
             return BadRequestDefault();
         }
 
-        return Created($"{result.Data.Id}", result.Data);
+        return Created($"{result.Data!.Id}", result.Data);
     }
 
     [HttpGet("{id}")]

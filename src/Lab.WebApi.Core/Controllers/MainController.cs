@@ -34,7 +34,7 @@ public abstract class MainController : ControllerBase
     protected ActionResult ResponseDefault<T>(Result<T>? result)
     {
         HasErrors(result);
-        return ResponseDefault(result.Data);
+        return ResponseDefault(result!.Data);
     }
 
     protected ActionResult ResponseDefault(Result? result)

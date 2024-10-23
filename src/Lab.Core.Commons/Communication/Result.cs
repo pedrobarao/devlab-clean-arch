@@ -60,14 +60,14 @@ public class Result<TData> : Result
         if (error is not null) Errors.Add(error);
     }
 
-    public TData Data { get; private set; }
+    public TData? Data { get; private set; }
 
     public static Result<TData> Ok(TData data)
     {
         return new Result<TData>(data);
     }
 
-    public static Result<TData> Fail(string error)
+    public new static Result<TData> Fail(string error)
     {
         return new Result<TData>(default!, error);
     }

@@ -4,7 +4,7 @@ namespace Lab.WebApi.Core.ApplicationIdentity;
 
 public static class ClaimsPrincipalExtensions
 {
-    public static string GetUserId(this ClaimsPrincipal principal)
+    public static string? GetUserId(this ClaimsPrincipal principal)
     {
         if (principal == null) throw new ArgumentException(nameof(principal));
 
@@ -12,7 +12,7 @@ public static class ClaimsPrincipalExtensions
         return claim?.Value;
     }
 
-    public static string GetUserEmail(this ClaimsPrincipal principal)
+    public static string? GetUserEmail(this ClaimsPrincipal principal)
     {
         if (principal == null) throw new ArgumentException(nameof(principal));
 
@@ -20,7 +20,7 @@ public static class ClaimsPrincipalExtensions
         return claim?.Value;
     }
 
-    public static string GetUserToken(this ClaimsPrincipal principal)
+    public static string? GetUserToken(this ClaimsPrincipal principal)
     {
         if (principal == null) throw new ArgumentException(nameof(principal));
 
@@ -28,7 +28,7 @@ public static class ClaimsPrincipalExtensions
         return claim?.Value;
     }
 
-    public static string GetUserRefreshToken(this ClaimsPrincipal principal)
+    public static string? GetUserRefreshToken(this ClaimsPrincipal principal)
     {
         if (principal == null) throw new ArgumentException(nameof(principal));
 
