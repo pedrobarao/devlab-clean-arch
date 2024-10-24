@@ -14,7 +14,7 @@ Se fizer sentido nos de uma ⭐ e fique a vontade para contribuir com sugestões
 aprender com você!
 🫡
 
-![./docs/images/clean-arch.png](./docs/images/clean-arch.png)
+![./docs/images/clean_arch2.jpg](./docs/images/clean_arch2.jpg)
 
 # Como utilizar? 🤔
 
