@@ -30,11 +30,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "deploy", "deploy", "{DE28013B-9568-4B91-9DD8-AC3636BD548B}"
 	ProjectSection(SolutionItems) = preProject
 		deploy\docker-compose.yaml = deploy\docker-compose.yaml
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "db", "db", "{A07C787E-42D8-4331-9AE3-448C4B184B12}"
-	ProjectSection(SolutionItems) = preProject
-		deploy\db\init.sql = deploy\db\init.sql
+		deploy\init.sql = deploy\init.sql
 	EndProjectSection
 EndProject
 Global
@@ -83,7 +79,6 @@ Global
 		{572830FE-1AB7-4803-86C4-B87CCB45947B} = {2A8348BD-7859-4F8F-B933-35F8F0C3FDE7}
 		{2A8348BD-7859-4F8F-B933-35F8F0C3FDE7} = {D7C65282-C4C8-47F1-8B86-2E0E7B059334}
 		{0EA88401-BA7C-4B93-BF49-4755236A67DB} = {2A8348BD-7859-4F8F-B933-35F8F0C3FDE7}
-		{A07C787E-42D8-4331-9AE3-448C4B184B12} = {DE28013B-9568-4B91-9DD8-AC3636BD548B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B2D297D3-0763-4038-A424-6CE4E23D415E}

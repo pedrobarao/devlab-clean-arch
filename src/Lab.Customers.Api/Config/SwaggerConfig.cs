@@ -10,12 +10,9 @@ public static class SwaggerConfig
 
     public static WebApplication UseSwaggerConfig(this WebApplication app)
     {
-        if (app.Environment.IsDevelopment())
-        {
-            app.UseSwagger();
-            app.UseSwaggerUI();
-            app.UseReDoc(options => { options.RoutePrefix = "docs"; });
-        }
+        app.UseSwagger();
+        app.UseSwaggerUI();
+        app.UseReDoc(options => { options.RoutePrefix = "docs"; });
 
         return app;
     }
